@@ -1,1 +1,1 @@
-web: gunicorn amamdouh1939-todo-list.wsgi --log-file -
+web: gunicorn todo_list_project.wsgi --log-file -
