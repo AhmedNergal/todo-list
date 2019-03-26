@@ -75,7 +75,7 @@ h1 {
 
 li p {
     display: inline;
-    font-size: 34px;
+    font-size: 2rem;
 }
 
 .todo-checkbox {
@@ -89,7 +89,7 @@ label {
 .todo-checkbox + label {
 	background-color: purple;
 	border: 3px solid white;
-    padding: 15px;
+    padding: 1rem;
     border-radius: 3px;
     display: inline-block;
     position: relative;
@@ -113,7 +113,7 @@ label {
 
 .todo-checkbox:checked + label:after {
 	content: "\2714";
-	font-size: 25px;
+	font-size: 1.5rem;
 	position: absolute;
 	top: 0px;
 	left: 3px;
@@ -152,4 +152,47 @@ label {
 
 ::-webkit-scrollbar-thumb{
     background: #5e005e;
+}
+
+@media (max-width: 500px){
+    .todo-checkbox + label {
+        background-color: purple;
+        border: 3px solid white;
+        padding: 0.75rem;
+        border-radius: 3px;
+        display: inline-block;
+        position: relative;
+        margin: 0;
+        margin-right: 2rem;
+    }
+    
+    .todo-checkbox + label:active, .todo-checkbox:checked + label:active {
+        margin: 0;
+        margin-right: 2rem;
+    }
+    
+    
+    .todo-checkbox:checked + label {
+        background-color: purple;
+        border: 3px solid white;
+        color: purple;
+        margin: 0;
+        margin-right: 2rem;
+    }
+    
+    .todo-checkbox:checked + label:after {
+        content: "\2714";
+        font-size: 1rem;
+        position: absolute;
+        top: 0px;
+        left: 3px;
+        color: white;
+        margin: 0;
+        margin-right: 2rem;
+    }
+
+    li p {
+        display: inline;
+        font-size: 1.25rem;
+    }
 }
