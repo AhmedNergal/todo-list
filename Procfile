@@ -1,1 +1,1 @@
-web: gunicorn djangoherokuapp.wsgi --log-file -
+web: gunicorn amamdouh1939-todo-list.wsgi --log-file -
