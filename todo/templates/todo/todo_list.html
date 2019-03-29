@@ -24,7 +24,7 @@
                         <li class="todo-item">
                             <input type="checkbox" name="{{ todo.id }}" id="{{ todo.id }}" class="todo-checkbox" checked><label for="{{ todo.id }}"></label>
                             <p class="completed">{{ todo.todo }}</p>
-                            <a name="{{ todo.id }}"class="btn btn-primary rem-btn">Remove Todo</a>
+                            <a name="{{ todo.id }}"class="btn btn-primary rem-btn"><i class="fas fa-trash"></i></a>
                         </li>
                     {% else %}
                         <li class="todo-item">

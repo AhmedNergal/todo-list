@@ -76,6 +76,7 @@ h1 {
 li p {
     display: inline;
     font-size: 2rem;
+    white-space: nowrap;
 }
 
 .todo-checkbox {

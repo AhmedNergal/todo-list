@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const request = new XMLHttpRequest();
 
         request.open("POST", "/add_todo");
-
         request.onload = function(){
             if (request.status == 200){
                 let objects = JSON.parse(request.response);
@@ -24,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let newTodoContent = objects["todo"];
 
                 let li = document.createElement("li");
+                li.classList.add("todo-item")
                 let p = document.createElement("p");
                 p.innerHTML = newTodoContent;
                 let checkbox = document.createElement("input");
@@ -39,11 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 removeTodoButton.innerHTML = "<i class=\"fas fa-trash\"></i>";
                 removeTodoButton.classList.add("btn", "btn-primary", "rem-btn");
                 removeTodoButton.href = "/delete_todo/" + newTodoId;
-                
+
+                li.appendChild(document.createTextNode(""));
                 li.appendChild(checkbox);
                 li.appendChild(label);
+                li.appendChild(document.createTextNode(""));
                 li.appendChild(p);
+                li.appendChild(document.createTextNode(""));
                 li.appendChild(removeTodoButton);
+                li.appendChild(document.createTextNode(""));
 
                 todoList.appendChild(li);
             }
@@ -51,34 +55,40 @@ document.addEventListener("DOMContentLoaded", () => {
         request.send(data)
     });
 
-    checkboxes.forEach(function (box){
-        box.addEventListener("click", () => {
-            box.parentElement.childNodes[4].classList.toggle("completed");
+    document.addEventListener("click", function(event){
+        if (event.target.classList.contains("todo-checkbox")){
+            let checkbox = event.target;
+            console.log(checkbox.name);
 
             const request = new XMLHttpRequest();
 
-            request.open("POST", "/switch_todo_state/" + box.name);
+            request.open("POST", "/switch_todo_state/" + checkbox.name);
 
-            const data = new FormData();
-            data.append("csrfmiddlewaretoken", CSRF_TOKEN);
-            request.send(data);
-        });
-    });
-
-    removeButtons.forEach(function (button){
-        button.addEventListener("click", () => {
-            const request = new XMLHttpRequest();
-            request.open("POST", "/delete_todo/" + button.name);
-            request.onload = function (){
-                if (request.status === 200){
-                    button.parentElement.remove();
+            request.onload = function(){
+                if (request.status == 200){
+                    checkbox.parentElement.childNodes[4].classList.toggle("completed");
                 }
             }
+
             const data = new FormData();
             data.append("csrfmiddlewaretoken", CSRF_TOKEN);
             request.send(data);
-        });
-    });
+        } else if (event.target.classList.contains("rem-btn")){
+            let removeTodoButton = event.target;
 
-    
+            const request = new XMLHttpRequest();
+            request.open("POST", "/delete_todo/" + removeTodoButton.name);
+
+            request.onload = function(){
+                if (request.status == 200){
+                    removeTodoButton.parentElement.remove();
+                }
+            }
+
+            const data = new FormData();
+            data.append("csrfmiddlewaretoken", CSRF_TOKEN);
+
+            request.send(data);
+        }
+    }, false);
 });

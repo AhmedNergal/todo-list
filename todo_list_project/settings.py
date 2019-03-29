@@ -25,7 +25,7 @@ SECRET_KEY = 'mdcve++cp!s^%8iw6htms9tbot!$#=8(bw!v1d49nq4ikb29h1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['amamdouh1939-todo-list.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','amamdouh1939-todo-list.herokuapp.com']
 
 
 # Application definition
